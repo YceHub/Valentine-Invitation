@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        div {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #yesButton {
+            background-color: #4CAF50; /* Green color for "Yes" button */
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+        }
+
+        #no {
+            background-color: #f44336; /* Red color for "No" button */
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+            position: absolute;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 30px;
+            color: #af4c86; /* Green color for positive message */
+            display: none; /* Hide the message by default */
+        }
+
+        #valentineText {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 id="valentineText">Will you be my Valentine?</h1>
+        <button id="yesButton" onclick="sayYes()">Yes</button>
+        <button id="no" onclick="changeLocation()">No</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function sayYes() {
+            document.getElementById("valentineText").style.display = "none";
+            document.getElementById("yesButton").style.display = "none";
+            document.getElementById("no").style.display = "none";
+
+            var messageDiv = document.getElementById("message");
+            messageDiv.innerHTML = "Yeeey, see you soon! <3";
+            messageDiv.style.display = "block";
+
+            // Embed the new Tenor GIF
+            var tenorDiv = document.createElement("div");
+            tenorDiv.className = "tenor-gif-embed";
+            tenorDiv.dataset.postid = "7769183593707445172";
+            tenorDiv.dataset.shareMethod = "host";
+            tenorDiv.dataset.aspectRatio = "1.09692";
+            tenorDiv.dataset.width = "100%";
+            tenorDiv.innerHTML = '<a href="https://tenor.com/view/%EC%9C%B0-%EC%95%A0%EA%B5%90-gif-7769183593707445172">윰 애교 GIF</a>from <a href="https://tenor.com/search/%EC%9C%B0+%EC%95%A0%EA%B5%90-gifs">윰 애교 GIFs</a>';
+            messageDiv.appendChild(tenorDiv);
+
+            // Load the Tenor embed script
+            var tenorScript = document.createElement("script");
+            tenorScript.type = "text/javascript";
+            tenorScript.async = true;
+            tenorScript.src = "https://tenor.com/embed.js";
+            messageDiv.appendChild(tenorScript);
+        }
+
+        function changeLocation() {
+            var i = Math.floor(Math.random() * 1000) + 1;
+            var j = Math.floor(Math.random() * 700) + 1;
+            document.getElementById("no").style.left = i + "px";
+            document.getElementById("no").style.top = j + "px";
+
+            var yesButton = document.getElementById("yesButton");
+            var currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = (currentSize + 30) + "px";
+
+            var noButton = document.getElementById("no");
+            var currentSizeNo = parseInt(window.getComputedStyle(noButton).fontSize);
+            noButton.style.fontSize = (currentSizeNo - 1) + "px";
+
+            var messageDiv = document.getElementById("message");
+            messageDiv.innerHTML = ""; // Clear the message after clicking "No"
+            messageDiv.style.display = "none"; // Hide the message after clicking "No"
+        }
+    </script>
+</body>
+</html>
